@@ -7,9 +7,11 @@ export class KeyBoardScript extends Component {
     @property moveSpeed: number = 100;
     movingDir: number = 1;// 1: right, -1: left
     isWalking: boolean = false;
+    animation: Animation = null;
     onLoad() {
         input.on(Input.EventType.KEY_DOWN, this.onKeyDown, this);
         input.on(Input.EventType.KEY_UP, this.onKeyUp, this);
+        this.animation = this.getComponent(Animation);
     }
 
     onKeyDown(event: EventKeyboard) {
@@ -18,12 +20,12 @@ export class KeyBoardScript extends Component {
                 {
                     this.isWalking = true;
                     this.movingDir = 1;
-                    this.getComponent(Animation).crossFade('run');
+                    this.animation.play('run');
                     break;
                 }
             case KeyCode.ARROW_LEFT:
                 {
-                    this.getComponent(Animation).crossFade('run');
+                    this.animation.play('run');
                     this.isWalking = true;
                     this.movingDir = -1;
                     break;
@@ -36,8 +38,13 @@ export class KeyBoardScript extends Component {
             case KeyCode.ARROW_RIGHT:
             case KeyCode.ARROW_LEFT:
                 {
-                    this.getComponent(Animation).stop();
+                    this.animation.stop();
                     this.isWalking = false;
+                    break;
+                }
+            case KeyCode.SPACE:
+                {
+                    this.animation.crossFade("attack");
                     break;
                 }
         }
@@ -51,6 +58,10 @@ export class KeyBoardScript extends Component {
         if (this.isWalking) {
             this.node.setPosition(this.node.getPosition().x + this.movingDir * this.moveSpeed * deltaTime, this.node.getPosition().y);
         }
+    }
+
+    onHit() {
+        console.log("onHit");
     }
 }
 
