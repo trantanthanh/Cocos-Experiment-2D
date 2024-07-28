@@ -1,3 +1,16 @@
 {
-  "__version__": "1.0.5"
+  "__version__": "1.0.5",
+  "physics": {
+    "collisionGroups": [
+      {
+        "index": 1,
+        "name": "FLOOR"
+      }
+    ],
+    "collisionMatrix": {
+      "0": 3,
+      "1": 1
+    }
+  },
+  "custom_joint_texture_layouts": []
 }
