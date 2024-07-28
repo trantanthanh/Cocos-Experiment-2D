@@ -6,6 +6,7 @@ export class MouseScript extends Component {
     start() {
         this.node.on(Input.EventType.MOUSE_DOWN, (event: EventMouse) => {
             console.log(event.currentTarget.name);
+            event.bubbles = false;
         })
     }
 

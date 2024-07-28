@@ -59,10 +59,6 @@ export class KeyBoardScript extends Component {
             this.node.setPosition(this.node.getPosition().x + this.movingDir * this.moveSpeed * deltaTime, this.node.getPosition().y);
         }
     }
-
-    onHit() {
-        console.log("onHit");
-    }
 }
 
 
